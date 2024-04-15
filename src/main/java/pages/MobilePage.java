@@ -14,6 +14,8 @@ public class MobilePage {
     private By titleText = By.tagName("h1");
     private By dropdown = By.cssSelector("select[title='Sort By']");
     private By itemsList = By.cssSelector("li[class = 'item last']");
+    private By sonyCost = By.id("product-price-1");
+    private By sonyMobile = By.id("product-collection-image-1");
 
     public MobilePage(WebDriver driver) {
         this.driver = driver;
@@ -38,5 +40,16 @@ public class MobilePage {
         Collections.sort(sortedName);
 
         return itemsNames.equals(sortedName);
+    }
+
+    public String getCost()
+    {
+        return driver.findElement(sonyCost).getText();
+    }
+
+    public SonyXperiaPage clickSonySperia()
+    {
+        driver.findElement(sonyMobile).click();
+        return new SonyXperiaPage(driver);
     }
 }

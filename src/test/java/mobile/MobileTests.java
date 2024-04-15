@@ -22,4 +22,19 @@ public class MobileTests extends BaseTests {
         // Verify items are sorted
         assertTrue(mobilePage.areItemsSorted());
     }
+
+    @Test
+    public void testIsCostCorrect()
+    {
+        // Click on 'Mobile' menu
+        var mobilePage = homePage.clickMobile();
+        // Get the cost of Sony mobile
+        String listCost = mobilePage.getCost();
+        // Click on 'Sony Xperia'
+        var sonyPage = mobilePage.clickSonySperia();
+        // Get the cost
+        String detailsCost = sonyPage.getCost();
+        // Compare both values
+        assertTrue(listCost.equals(detailsCost));
+    }
 }
