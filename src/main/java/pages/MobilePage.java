@@ -16,6 +16,7 @@ public class MobilePage {
     private By itemsList = By.cssSelector("li[class = 'item last']");
     private By sonyCost = By.id("product-price-1");
     private By sonyMobile = By.id("product-collection-image-1");
+    private By addToCart = By.cssSelector("button.btn-cart");
 
     public MobilePage(WebDriver driver) {
         this.driver = driver;
@@ -51,5 +52,11 @@ public class MobilePage {
     {
         driver.findElement(sonyMobile).click();
         return new SonyXperiaPage(driver);
+    }
+
+    public ShoppingCartPage addSonyToCart()
+    {
+        driver.findElements(addToCart).get(2).click();
+        return new ShoppingCartPage(driver);
     }
 }
