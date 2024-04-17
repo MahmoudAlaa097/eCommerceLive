@@ -31,7 +31,7 @@ public class MobileTests extends BaseTests {
         // Get the cost of Sony mobile
         String listCost = mobilePage.getCost();
         // Click on 'Sony Xperia'
-        var sonyPage = mobilePage.clickSonySperia();
+        var sonyPage = mobilePage.clickSonyXperia();
         // Get the cost
         String detailsCost = sonyPage.getCost();
         // Compare both values
