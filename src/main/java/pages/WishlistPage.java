@@ -7,6 +7,7 @@ public class WishlistPage {
     private WebDriver driver;
     private By shareWishlist = By.name("save_and_share");
     private By successMsg = By.cssSelector("li[class='success-msg']");
+    private By addToCartButton = By.cssSelector("button[title='Add to Cart']");
 
     public WishlistPage(WebDriver driver) {
         this.driver = driver;
@@ -21,5 +22,11 @@ public class WishlistPage {
     public String getSuccessMsg()
     {
         return driver.findElement(successMsg).getText();
+    }
+
+    public ShoppingCartPage clickAddToCart()
+    {
+        driver.findElement(addToCartButton).click();
+        return new ShoppingCartPage(driver);
     }
 }
