@@ -17,7 +17,7 @@ public class SavePreviousOrder extends BaseTests {
 
         // Verify that previously added order status is pending
         assertEquals(accountPage.getStatus(), "Pending", "Order is not added");
-
+        
         // Click View Orders
         accountPage.clickViewOrders();
 
