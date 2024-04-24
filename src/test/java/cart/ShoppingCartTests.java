@@ -145,4 +145,22 @@ public class ShoppingCartTests extends BaseTests {
         assertTrue(checkoutPage.getSuccessMsg().contains("Your order # is: "),
                 "Order number is not generated");
     }
+
+    @Test
+    public void testDiscountCouponIsGenerated()
+    {
+        String coupon = "GURU50";
+        // Login
+        var homepage = homePage.clickMobile();
+        // Add IPhone to cart
+        var shoppingPage = homepage.clickAddToCartIphone();
+        // Set coupon
+        shoppingPage.setCoupon(coupon);
+        // Click apply
+        shoppingPage.clickApply();
+        // Verify discount is applied
+        assertEquals(shoppingPage.getDiscountText(),
+                "DISCOUNT (" + coupon + ')',
+                "Coupon is not applied");
+    }
 }

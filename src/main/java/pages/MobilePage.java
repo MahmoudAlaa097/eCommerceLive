@@ -1,10 +1,12 @@
 package pages;
 
+import jdk.jshell.execution.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.Select;
+import utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +27,7 @@ public class MobilePage {
     private By sonyCompare = RelativeLocator.with(addToCompare).below(sonyImg);
     private By iphoneCompare = RelativeLocator.with(addToCompare).below(iphoneImg);
     private By compareButton = By.cssSelector("button[title='Compare']");
-
+    private By addToCartIphone = RelativeLocator.with(addToCart).below(iphoneImg);
 
     public MobilePage(WebDriver driver) {
         this.driver = driver;
@@ -91,5 +93,12 @@ public class MobilePage {
     public ComparePage clickCompareButton(){
         driver.findElement(compareButton).click();
         return new ComparePage(driver);
+    }
+
+    public ShoppingCartPage clickAddToCartIphone()
+    {
+        Utils.waitElementIsClickable(driver, addToCartIphone);
+        driver.findElement(addToCartIphone).click();
+        return new ShoppingCartPage(driver);
     }
 }

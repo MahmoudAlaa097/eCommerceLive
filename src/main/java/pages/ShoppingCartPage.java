@@ -22,6 +22,9 @@ public class ShoppingCartPage {
     private By flatRateIncluded = By.xpath("//*[@id='shopping-cart-totals-table']/tbody/tr[2]/td[2]/span");
     private By fixedRateButton = By.id("s_method_flatrate_flatrate");
     private By grandTotal = By.xpath("//*[@id='shopping-cart-totals-table']//td/strong/span");
+    private By couponField = By.id("coupon_code");
+    private By applyButton = By.cssSelector("button[title=Apply]");
+    private By discountText = By.xpath("//*[@id='shopping-cart-totals-table']/tbody/tr[2]/td[1]");
 
     public ShoppingCartPage(WebDriver driver) {
         this.driver = driver;
@@ -107,5 +110,24 @@ public class ShoppingCartPage {
     {
         Utils.waitElementIsVisible(driver, grandTotal);
         return driver.findElement(grandTotal).getText();
+    }
+
+    public void setCoupon(String coupon)
+    {
+        Utils.waitElementIsVisible(driver, couponField);
+        driver.findElement(couponField).clear();
+        driver.findElement(couponField).sendKeys(coupon);
+    }
+
+    public void clickApply()
+    {
+        Utils.waitElementIsClickable(driver, applyButton);
+        driver.findElement(applyButton).click();
+    }
+
+    public String getDiscountText()
+    {
+        Utils.waitElementIsVisible(driver, discountText);
+        return driver.findElement(discountText).getText();
     }
 }
