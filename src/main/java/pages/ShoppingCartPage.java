@@ -21,6 +21,7 @@ public class ShoppingCartPage {
     private By updateTotalButton = By.name("do");
     private By flatRateIncluded = By.xpath("//*[@id='shopping-cart-totals-table']/tbody/tr[2]/td[2]/span");
     private By fixedRateButton = By.id("s_method_flatrate_flatrate");
+    private By grandTotal = By.xpath("//*[@id='shopping-cart-totals-table']//td/strong/span");
 
     public ShoppingCartPage(WebDriver driver) {
         this.driver = driver;
@@ -28,6 +29,8 @@ public class ShoppingCartPage {
 
     public void setQuantity(int quantity)
     {
+        Utils.waitElementIsVisible(driver, productQuantity);
+        driver.findElement(productQuantity).clear();
         driver.findElement(productQuantity).clear();
         driver.findElement(productQuantity).sendKeys(Integer.toString(quantity));
         driver.findElement(updateButton).click();
@@ -98,5 +101,11 @@ public class ShoppingCartPage {
     public void clickFixedFlatRate()
     {
         driver.findElement(fixedRateButton).click();
+    }
+
+    public String getGrandTotal()
+    {
+        Utils.waitElementIsVisible(driver, grandTotal);
+        return driver.findElement(grandTotal).getText();
     }
 }

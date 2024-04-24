@@ -14,6 +14,7 @@ public class AccountPage {
     private By viewOrdersButton = By.xpath("//*[@class=\"a-center view last\"]/span/a[1]");
     private By orderStatus = By.xpath("//table//*[@class='status']/em");
     private By printOrder = By.className("link-print");
+    private By reOrderButton = By.className("link-reorder");
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -58,5 +59,12 @@ public class AccountPage {
     {
         Utils.waitElementIsClickable(driver, printOrder);
         driver.findElement(printOrder);
+    }
+
+    public ShoppingCartPage clickReOrder()
+    {
+        Utils.waitElementIsClickable(driver, reOrderButton);
+        driver.findElement(reOrderButton).click();
+        return new ShoppingCartPage(driver);
     }
 }
